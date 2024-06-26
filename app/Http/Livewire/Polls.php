@@ -13,7 +13,7 @@ class Polls extends Component
 
     public function render()
     {
-        $polls = \App\Models\Poll::with('options.votes')
+        $polls = \App\Models\Poll::with('options.votes')->where('user_id',auth()->user()->id)
             ->latest()->get();
 
         return view('livewire.polls', ['polls' => $polls]);
@@ -22,5 +22,10 @@ class Polls extends Component
     public function vote(Option $option)
     {
         $option->votes()->create();
+    }
+
+    public function unvote(Option $option)
+    {
+        $option->votes()->limit(1)->delete();
     }
 }

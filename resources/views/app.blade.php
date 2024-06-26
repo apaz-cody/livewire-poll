@@ -4,9 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Laravel Livewire Poll</title>
+  <title>Livewire Poll</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+  <!-- Scripts -->
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   {{-- blade-formatter-disable --}}
   <style type="text/tailwindcss">
@@ -32,18 +38,32 @@
   @livewireStyles
 </head>
 
-<body class="container mx-auto mt-10 mb-10 max-w-lg">
+<body >
   @livewireScripts
 
-  <div>
-    <h2 class="mb-4 mt-4 text-2xl">Create Poll</h2>
-    @livewire('create-poll')
-  </div>
+  @include('layouts.navigation')
 
+  <!-- Page Heading -->
+  @if (isset($header))
+      <header class="bg-white shadow">
+          <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+              {{ $header }}
+          </div>
+      </header>
+  @endif
+
+
+<div class="container mx-auto mt-10 mb-10 max-w-lg">
   <div>
-    <h2 class="mb-4 mt-4 text-2xl">Available Polls</h2>
-    @livewire('polls')
+  <h2 class="mb-4 mt-4 text-2xl">Create Poll</h2>
+  @livewire('create-poll')
   </div>
+  
+  <div>
+  <h2 class="mb-4 mt-4 text-2xl">Available Polls</h2>
+  @livewire('polls')
+  </div>
+</div>
 </body>
 
 </html>

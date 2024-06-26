@@ -10,7 +10,7 @@ class Poll extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title','user_id'];
 
     public function options(): HasMany
     {

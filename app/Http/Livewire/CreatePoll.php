@@ -46,7 +46,8 @@ class CreatePoll extends Component
         $this->validate();
 
         Poll::create([
-            'title' => $this->title
+            'title' => $this->title,
+            'user_id' => auth()->user()->id
         ])->options()->createMany(
                 collect($this->options)
                     ->map(fn($option) => ['name' => $option])
